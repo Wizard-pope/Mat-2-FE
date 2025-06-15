@@ -880,38 +880,50 @@ y'\cdot y^{-\alpha} + f(x) \cdot y^{1-\alpha}= g(x)
 
 
 \section*{Eksaktna diferencialna enačba}
-Eksaktna DE je enačba oblike$P(x,y)dx+Q(x,y)dy = 0$, kjer velja da je $P_y=Q_x$.\\\
+Eksaktna DE je enačba oblike $P(x,y)dx+Q(x,y)dy = 0$, kjer velja da je $P_y=Q_x$.\\\
 
-Rešitev EDE dobimo v implicitni obliki
-$F(x,y) = C$\\
-Če zadošča pogoju $P_y=Q_x$, potem je $dF(x,y)$ enako 0, saj je $\int F_xdx+F_ydy=\int Pdx + Qdy$. Ta pogoj pove tudi da sta mešana odvoda enaka.\\\
+
+Če zadošča pogoju $P_y=Q_x$,
+
+\[\frac{\partial F}{\partial x} = P(x, y), \quad \frac{\partial F}{\partial y} = Q(x,y)\]
+
+ potem je $dF(x,y)$ enako 0, saj je $\int (F_xdx+F_ydy)=\int (Pdx + Qdy)$. Ta pogoj pove tudi da sta mešana odvoda enaka.\\\
 
 
 Rešimo jo tako da integriramo $\int P(x,y) dx$  in $\int Q(x,y) dy$ ter potem sestavimo skupno enačbo tako da v skupno enačbo dodamo vse člene, kjer členov ne podvajamo.
 
+Rešitev EDE dobimo v implicitni obliki
+$F(x,y) = C$\\
+
 
 
 \section*{Vpeljava parametra v diferencialno enačbo:}
-
-$F(x,y')=0$\\
-$x=\varphi(y')$\\
+Enačba oblike 
+$F(x,y')=0$ ali $F(y,y')=0$\\
+%$x=\varphi(y')$\\
 V DE lahko ne nastopa:\\\
 
 $y : F(x,y’) = 0$, tu lahko izrazimo $y’ = f(x)$ in rešujemo DE z ločljivimi spremenljivkami.\\\
 
 $x : F(y,y’) = 0$, tu lahko izrazimo $x = f(y’)$  oziroma $x = \frac{dy}{dx}$ in vpeljemo parameter $p = y’$
-sledi $x = f(p) \rightarrow dx = f(p) dp \rightarrow \frac{dy}{p} = f(p) dp \rightarrow y = f(p) p dp$
-	Dobili smo parametrični zapis rešitve DE.
+sledi 
+
+\[
+x = f(p) \rightarrow dx = f(p) dp \rightarrow \frac{dy}{p} = f(p) dp \rightarrow y = f(p) p dp\]
+
+Dobili smo parametrični zapis rešitve DE.
 
 
 \section*{Ortogonalne trajektorije}
 
-Ortogonalne trajektorije so vse krivulje, ki neki družino krivulj sekajo pod pravim kotom.\\ Iz linearnih funkcij se spomnimo, da je smerni koeficient pravokotnice na premico s smernim koeficientom k enak $-\frac{1}{k}$. Podobno za ortogonalne trajektorije velja $y'_{ort}= -\frac{1}{f(x,y)}$.
+Ortogonalne trajektorije so vse krivulje, ki neki družino krivulj sekajo pod pravim kotom.\\ Iz linearnih funkcij se spomnimo, da je smerni koeficient pravokotnice na premico s smernim koeficientom k enak $-\frac{1}{k}$. Podobno za ortogonalne trajektorije velja 
+
+\[y'_{ort}= -\frac{1}{f(x,y)}\]
 
 
 \section*{Eksistenca in enoličnost rešitve diferencialne enačbe}
 
-$y'=f(x,y), y(x0)=y0$
+$y'=f(x,y)$, $y(x_0)=y_0$
 
 Pri začetnem problemu ima DE lahko eno rešitev, neskončno rešitev ali nobene rešitve.\\\
 
@@ -920,16 +932,23 @@ Pri začetnem problemu ima DE lahko eno rešitev, neskončno rešitev ali nobene
 če je $y(1) = 1 $,  imamo eno rešitev,\\
 če je $y(0) = 1$,  ni rešitve\\\
 
-Če imamo neko funkcijo omejeno s pravokotnikom in velja, da je $|x-x_0| \leq M$ in je $fy(x,y) \leq N$ za vsako točko v pravokotniku, potem obstaja ena rešitev pri začetnem pogoju $y(x_0) = y_0$.
+Če imamo neko funkcijo omejeno s pravokotnikom in velja, da je $|x-x_0| \leq M$ in je $f_y(x,y) \leq N$ za vsako točko v pravokotniku, potem obstaja ena rešitev pri začetnem pogoju $y(x_0) = y_0$.
 
 
 \section*{Splošna rešitev linearne diferencialne enačbe drugega reda}
 
 Splošna rešitev homogene linearne diferencialne enačbe drugega reda je oblike
-\[y(x) = C_1y_1+C_2y_2\] kjer sta $y_1$ in $y_2$ linearno neodvisni funkciji. Če je enačba nehomogena potem zraven prištejemo še partikularni del. Pri splošni rešitvi smo dobili vse rešitve diferencialne enačbe.
+\[y(x) = C_1y_1(x)+C_2y_2(x)\] 
+kjer sta $y_1$ in $y_2$ linearno neodvisni funkciji. \\
+
+Če je enačba nehomogena potem zraven prištejemo še partikularni del $y_p(x)$. 
+
+\[y(x) = C_1y_1(x)+C_2y_2(x)+ y_p(x)\] 
+
+Pri splošni rešitvi smo dobili vse rešitve diferencialne enačbe.
 
 
-\section*{Linearna diferencialna enačba drugega reda homogena s konstantnimi koeficienti}
+\section*{Homogena linearna diferencialna enačba drugega reda s konstantnimi koeficienti}
 
 Je enačba oblike $y'' + ay' +by = 0$, kjer so $a$ in $b$ konstantni koeficienti. Rešitev se išče z nastavkom $e^{\lambda x}$, kar nam pridela karakteristični polinom
 
@@ -965,7 +984,7 @@ y_1'(x) & y_2'(x)
 \]
 
 
-\section*{Linearna diferencialna enačba s konstantnimi koeficienti, 2. reda, nehomogena}
+\section*{Nehomogena linearna diferencialna enačba 2. reda s konstantnimi koeficienti}
 
 \[y''(x) +ay'(x) +by(x9 = r(x)\]
 
@@ -973,7 +992,7 @@ Pri reševanju nehomogene LDE 2. reda s konstantnimi koeficienti najprej rešimo
 
 \[r(x) = Ae^{ax} \Rightarrow y_p = Ce^{ax}x^k\]
 
-k je enak številu lambd karakterističnega polinoma, ki so enaki $a$
+$k$ je enak številu $\lambda$ karakterističnega polinoma, ki so enaki $a$
 
 \[r(x) = P_n(x) \Rightarrow y_p = P_n(x)x^k\]
 
@@ -993,6 +1012,62 @@ $k$ je večkratnost ničle $ib$ v karakterističnem polinomu.\\\
 
 
 \section*{Nehomogena linearna diferencialna enačba 2. reda}
+
+Pri reševanju nehomogene LDE 2. reda s konstantnimi koeficienti najprej rešimo homogeni del, nato pa
+s pomočjo nastavkov dobimo še partikularno rešitev. Nastavek je odvisen od oblike funkcije $r(x)$.
+
+
+\subsection*{Primeri nastavkov glede na $r(x)$}
+
+Če je $r(x) = Ae^{ax}$, potem je nastavek:
+
+\[y_p = Ce^{ax}x^k\]
+
+kjer je $k$ enak številu ničel (večkratnosti) vrednosti $\lambda = a$ v karakterističnem polinomu.
+
+Če je $r(x) = P_n(x)$, kjer je $P_n$ polinom $n$-te stopnje, potem je:
+
+\[y_p = P_n(x)x^k\]
+
+kjer $k$ predstavlja večkratnost ničle $\lambda = 0$ v karakterističnem polinomu. Koeficiente polinoma $P_n(x)$
+določimo z vstavitvijo v izvirno enačbo.
+
+Če je $r(x) = A \sin(bx)$ ali $r(x) = A \cos(bx)$, potem uporabimo nastavek:
+
+\[y_p = (C_1 \cos(bx) + C_2 \sin(bx))x^k\]
+
+kjer je $k$ večkratnost kompleksne ničle $\lambda = \pm ib$ v karakterističnem polinomu.
+
+
+\subsection*{Sestavljeni primeri}
+Če je $r(x)$ sestavljen iz vsote zgoraj omenjenih funkcij (npr. $r(x) = e^x + cos(x)$), potem je nastavek vsota
+posameznih nastavkov.
+Če je $r(x)$ produkt funkcij (npr. $r(x) = P_n(x)e^{ax}$), potem je:
+
+\[r(x) = P_n(x)e^{ax} \Rightarrow y_p = P_n(x)e^{ax}x^k \]
+
+kjer $k$ določa večkratnost ničle $\lambda = a$ v karakterističnem polinomu.
+
+
+\subsection*{Primer}
+
+Naj bo:
+
+\[y'' - 3y' + 2y = e^x\]
+
+Homogeni del:
+
+\[y_h = C_1e^x + C_2e^{2x}\]
+ 
+Ker je $e^x$ že rešitev homogenega dela (večkratnost $\lambda = 1$ je 1), vzamemo partikularni nastavek:
+
+\[ y_p = xe^x\]
+
+Končna rešitev:
+
+\[ y(x) = C_1e^x + C_2e^{2x} + xe^x\]
+
+
 
 \section*{Eulerjeva diferencialna enačba 2. reda}
 
@@ -1025,8 +1100,85 @@ Homogeni del:\\
 
 \section*{Reševanje nehomogene linearne diferencialne enačbe s konstantnimi koeficienti višjega reda s pomočjo nastavka}
 
+Diferencialna enačba višjega reda s konstantnimi koeficienti:
+
+\[a_ny^{(n)} + a_{n-1}y^{(n-1)} + \cdots + a_1y' + a_0y = g(x)\]
+
+$a_i$ so konstanti koeficienti\\
+$g(x) \neq 0 $ je nehomogeni člen\\
+$y^n$ je $n$-ti odvod $y(x)$\\
+Red enačbe $n \geq 2$\\\
+
+Splošna rešitev:
+
+\[y(x) = y_h(x)+y_p(x)\]
+
+$y_h(x)$ je rešitev homogene enačbe $g(x) = 0$\\$y_p$ je partikularna rešitev nehomogene enačbe.\\\
+
+\textbf{Nastavek:}\\
+Uporabimo ustrezen nastavek za $y_p(x)$ ki je odvisen od oblike $ g(x)$.
+
+\begin{center}
+
+
+\begin{tabular}{|c|c|}
+\hline
+$g(x)$ & Nastavek za $y_p(x)$ \\
+\hline
+$P_n(x)$ (polinom) & polinom enake stopnje \\
+$e^{\alpha x}$ & $Ae^{\alpha x}$ \\
+$\sin(\beta x)$, $\cos(\beta x)$ & $A \cos(\beta x) + B \sin(\beta x)$ \\
+$x^k e^{\alpha x}$ & $x^k (Ae^{\alpha x})$ \\
+\hline
+\end{tabular}
+\end{center}
+
+
+Poseben primer – rezonanca: Če se del nastavka že pojavi v homogeni rešitvi $y_h(x)$ (t.j. je
+rešitev karakteristične enačbe), ga moramo pomnožiti z $x$ (ali višjo potenco $x^k$), da zagotovimo linearno neodvisnost.
+
+
 \section*{Sistemi diferencialnih enačb}
 
+Sistem diferencialnih enačb je množica več diferencialnih enačb, v katerih nastopa več neznanih funkcij iste spremenljivke (najpogosteje časa $t$ ali prostora $x$). Te funkcije so medsebojno povezane.\\\
+
+Splošna oblika sistema$n$ linearnih diferencialnih enačb 1. reda:
+
+\[\begin{cases}
+y'_1(t) = a_{11}y_1(t) + a_{12}y_2(t) + \cdots + a_{1n}y_n(t) + g_1(t) \\
+y'_2(t) = a_{21}y_1(t) + a_{22}y_2(t) + \cdots + a_{2n}y_n(t) + g_2(t) \\
+\vdots \\
+y'_n(t) = a_{n1}y_1(t) + a_{n2}y_2(t) + \cdots + a_{nn}y_n(t) + g_n(t)
+\end{cases}
+\]
+
+$y_i(t)$ so neznane funkcije\\
+$a_{ij}$ so konstante ali funkcije\\
+$g_i(t)$ so nehomogeni členi\\\
+
+
+\subsection*{Vrste sistemov}
+\begin{itemize}
+\item Linearni ali nelinearni
+\item Homogeni ($g_i(t) = 0$) ali nehomogeni
+\item Avtonomni (brez $t$) ali neavtonomni
+\end{itemize}
+
+\subsection*{Reševanje linearnega sistema 1. reda s konstantnimi koeficienti}
+
+Sistem:  
+
+\[Y'(t) = AY(t) + G(t)\]
+
+Y(t) je vektor funkcij $y_i(t)$\\
+A je matrika koeficientov\\
+G(t) so nehomogeni vektorski členi\\\
+
+\textbf{Metode reševanja:}\\
+Diagonalizacija matrike A\\
+Lastne vrednosti in lastni vektorji\\
+Fundamentalna matrika rešitev\\
+Variacija konstante za nehomogene sisteme
 
 
 \end{document}
