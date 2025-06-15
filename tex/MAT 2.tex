@@ -1,0 +1,1033 @@
+\documentclass[12pt]{report}
+
+\usepackage[a4paper]{geometry}
+
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{caption}
+\graphicspath{ {./Images/} }
+\usepackage[document]{ragged2e}
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage[slovene]{babel}
+\usepackage{textcomp, gensymb}
+\usepackage{siunitx}
+\usepackage{pdfrender,xcolor}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+
+
+\newfloat{slika}{htbp}{loc}
+\floatname{slika}{Slika}
+
+\newfloat{tabela}{htbp}{loc}
+\floatname{tabela}{Tabela}
+
+% Differential
+\newcommand{\diff}{\mathrm{d}}
+
+
+\title{
+
+  {MAT 2 ustni del}\\
+  {\small Rešitve pogostih vprašanj}\\
+
+}
+\date{junij 2025}
+\author{Jure Kos}
+
+
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter{. }}{0pt}{\Huge\bfseries}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+
+\maketitle
+
+
+\chapter*{Linearna algebra}
+
+
+\section*{Determinanta, poddeterminanta}
+Determinanta matrike je preslikava ki kvadratni matriki priredi realno vrednost. Njena vrednost je enaka vsoti vseh kombinacij elementov, ki nimajo skupnega stolpca ali vrstice. Nekaterim elementom je potrebno spremeniti predznak, uporabimo pravilo šahovnice (pri razvoju iz elementa Amn je potrebno obrniti predznak, ko je m+n liho število).
+
+
+
+Primer uporabe pravila šahovnice na matriki 5x5
+
+\[
+\begin{bmatrix}
++ & - & + & - & + \\ 
+- & + & - & + & - \\ 
++ & - & + & - & + \\ 
+- & + & - & + & - \\ 
++ & - & + & - & + \\
+\end{bmatrix}
+\]
+
+
+Primer razvoja ene izmed kombinacij najprej po elementu A, nato po elementu B, kjer je potrebno obrniti predznak in nato C ter kasneje še 2x2 matrike. Za celotno determinanto je treba sešteti vse take kombinacije.
+
+\[
+\begin{bmatrix} A B C \\ D E F \\ G H I \end{bmatrix} \rightarrow A \cdot 
+\begin{bmatrix} E F \\ H I \end{bmatrix} - B \cdot
+\begin{bmatrix} D F \\ G I \end{bmatrix} + C \cdot 
+\begin{bmatrix} D E \\ G H \end{bmatrix} ...
+\]
+
+Za matrike 2x2 in 3x3 obstajata hitrejša načina za računanje determinante. pri matriki 2x2 je determinanta enaka produktu elementov na diagonali v smeri \textbackslash minus produkt na diagonali v smeri /.
+
+
+\[
+\begin{bmatrix} A B \\ C D \end{bmatrix} \rightarrow A \cdot D - B \cdot C\]
+
+Determinanto 3x3 se izračuna po Sarrusovem pravilu iz razširjene matrike 3x5, ki ima na levi strani originalno matriko, na desni pa 1. in 2. stolpec originalne matrike. Produkte diagonal seštevamo na podoben način kot pri determinanti 2x2.
+
+\[ 
+\begin{bmatrix} A & B & C \\ D & E & F \\ G & H & I \end{bmatrix} \rightarrow
+\begin{bmatrix} A & B & C\\D & E & F\\G & H & I \end{bmatrix}\left.
+\begin{matrix} A & B \\ D & E \\ G & H \end{matrix}\right|\rightarrow
+\begin{vmatrix} A & B & C\\  D & E & F\\  G &H &I \end{vmatrix}\left.
+\begin{matrix} A & B \\  D & E \\  G & H \end{matrix}\right| =
+\]
+\bigbreak
+\[
+= AEI+BFG+CDH-BDI-AFH-CEG
+\]
+
+
+Poddeterminanta je determinanta dela originalne matrike. Ta del matrike mora biti kvadratna matrika, originalna matrika pa je lahko poljubnih dimenzij.
+
+
+\section*{Lastnosti determinante}
+Naj bo A kvadratna matrika velikosti nxn
+
+\[det(A^{t}) = det(A)\]
+
+Če v matriki A zamenjamo 2 vrstici ali stolpca dobimo matriko B za katero velja
+
+\[det(B) = -det(A)\]
+
+Če matriko A pomnožimo s faktorjem b velja
+
+\[det(bA) = b^n \cdot det(A)\]
+
+Če sta dve vrstici ali stolpca enaka ali je eden izmed stolpcev/vrstic večkratnik drugega, je determinanta matrike enaka 0.
+
+Če eni izmed vrstic prištejemo drugo se vrednost determinante ohrani.
+
+V zgornje-trikotni, spodnje-trikotni ali diagonalni matriki je determinanta enaka produktu elementov na diagonali
+\pagebreak
+Determinanta produkta matrik A in B je enaka produktu determinant teh dveh matrik
+
+\[det(AB) = det(BA) = det(A) \cdot det(B)\]
+
+Zaradi tega je 
+
+\[det(A^{-1}) = \frac{q}{det(A)}\]
+
+Dokaz:
+
+\[det(I) = 1  \space in \space A A^{-1} = I \rightarrow det(A A^{-1}) = 1 \rightarrow det(A)det(A^{-1}) = 1 \rightarrow det(A^{-1}) = \frac{q}{det(A)}\]
+
+Matriki se da izračunati inverzno vrednost ko je njena determinanta različna od 0.
+
+
+
+\section*{Cramerjevo pravilo}
+
+Sisteme linearnih enačb se da rešiti s pomočjo matrik. Najprej poskrbimo, da so v sistemu enačb spremenljivke napisane v enakem vrstnem redu. Koeficiente pred spremenljivkami zapišemo v kvadratno matriko, rešitve pa v stolpično matriko. Koeficienti pred enako spremenljivko so v matriki torej v istem stolpcu. Najprej izračunamo determinanto matrike koeficientov (V nadaljevanju $D$). Nato stolpec koeficientov prve spremenljivke (V nadaljevanju $x_i$) zamenjamo s stolpcem rešitev. Izračunamo vrednost nove determinante (V nadaljevanju $D_i$). Velja $x_i = \frac{D_i}{D}$. Postopek ponovimo za vse neznanke.
+
+\pagebreak
+Primer: 5x+3y=1, 4x-2y=14
+
+\begin{align*} 
+\begin{bmatrix}5 &3 \\  4& -2\end{bmatrix}\cdot
+\begin{bmatrix}x\\y \end{bmatrix} = 
+\begin{bmatrix}1\\14 \end{bmatrix}\\
+D=\begin{vmatrix}5 &3\\4 &-2 \end{vmatrix}=-22\\
+Dx=\begin{vmatrix}1 &3\\14 &-2 \end{vmatrix}=-44 \\
+Dy=\begin{vmatrix}5 &1\\4 &14 \end{vmatrix}=66\\
+x=\frac{D_x}{D} = 2  \\
+y=\frac{D_y}{D} = -3
+\end{align*}
+
+\section*{Računanje z vektorji, kot med vektorji}
+
+\begin{align*} 
+&\vec a = (x_a,\ y_a,\ z_a) \\ 
+&\vec b = (x_b,\ y_b,\ z_b) \\ 
+& \vec a + \vec b =(x_a+x_b,\ y_a+y_b,\ z_a+z_b) \\ 
+& \vec a - \vec b =(x_a-x_b,\ y_a-y_b,\ z_a-z_b) \\ 
+&\lambda \vec a = (\lambda x_a,\ \lambda y_a,\ \lambda z_a) \\ 
+&\vec a + \vec b = \vec b + \vec a\\ 
+& \lambda (\vec a + \vec b) = \lambda \vec a + \lambda \vec b \\ 
+&(\vec a + \vec b) + \vec c = \vec a + (\vec b + \vec c) \\
+& (\lambda + \mu) \vec a = \lambda \vec a+ \mu \vec a
+\end{align*}
+
+Kot med vektorjema izračunamo preko skalarnega produkta.
+
+\[ \vec a \cdot \vec b = |\vec a|| \vec b| \cdot cos\varphi
+\]
+
+\[cos \varphi = \frac{\vec a \cdot \vec b}{|\vec a||\vec b|}\]
+
+\section*{Skalarni produkt vektorjev}
+Skalarni produkt dva vektorja zmnoži v skalar. Je enak vsoti produktov istoležnih komponent. Skalarni produkt vektorjev a in b geometrijsko predstavlja produkt dolžine a in dolžine projekcije b na a ali dolžine b in dolžine projekcije a na b.
+
+\begin{align*} 
+&\vec a = (x_a,\ y_a,\ z_a) \\ 
+&\vec b = (x_b,\ y_b,\ z_b) \\ 
+& \vec a \cdot \vec b = x_a x_b+ y_ay_b+z_az_b \\
+& \vec a \cdot \vec a = |\vec a|^2 \geq 0 \\
+&\vec a \cdot \vec a = 0 \Rightarrow \vec a = 0\\
+& \vec a \cdot \vec b = \vec b \cdot \vec a \\
+& (\vec a + \vec b)\cdot \vec c = \vec a \cdot \vec c+\vec b \cdot \vec c \\
+&(\vec a \cdot \vec b)\cdot \vec c \neq \vec a \cdot (\vec b\cdot \vec c)   
+\end{align*}
+
+
+\section*{Vektorski produkt vektorjev}
+
+Vektorski produkt dva vektorja zmnoži v vektor. Nastali vektor je pravokoten na prvotna vektorja in ima dolžino enako paralelogramu, ki ga vektorja opisujeta.
+
+
+\begin{align*}
+&\vec a = (x_a, y_a, z_a) \\
+& \vec b = (x_b, y_b, z_b) \\
+& \vec a \times \vec b = 
+\begin{vmatrix}
+\vec i & \vec j & \vec k\\ 
+ x_a & y_a & z_a\\ 
+ x_b & y_b & z_b
+\end{vmatrix} 
+= \vec i(y_az_b-z_ay_b) +\vec j (z_ax_b-x_az_b)+ \vec k(x_ay_b-y_ax_b)\\
+& \vec a \times \vec a = 0\\
+&\vec a \times \vec b=-\vec b \times \vec a\\
+&(\vec a \times \vec b)\times\vec c \neq\vec a \times( \vec b \times \vec c)\\
+&(k\vec a)\times\vec b=k(\vec a \times \vec b)\\
+&|\vec a \times \vec b|=|\vec a||\vec b|\sin\varphi
+\end{align*}
+
+
+
+\section*{Mešani produkt vektorjev}
+Pri mešanemu produktu treh vektorjev prvi vektor skalarno množimo z vektorskim produktom drugih dveh.
+
+
+\begin{align*}
+&\vec a = (x_a, y_a, z_a) \\
+& \vec b = (x_b, y_b, z_b) \\
+& \vec c=(x_c,y_c,z_c)\\
+& (\vec a, \vec b,  \vec c) = \vec a \cdot (\vec b \times \vec c) = 
+\begin{vmatrix}
+ x_a & y_a & z_a\\ 
+ x_b & y_b & z_b\\ 
+ x_c & y_c & z_c
+\end{vmatrix} =\\
+&= x_a(y_bz_c-z_by_c) +y_a(z_bx_c-x_bz_c)+ z_a(x_by_c-y_ax_c)
+\end{align*}
+
+
+
+
+\section*{Cauchy-Schwarzova neenakost}
+
+Schwarzova neenakost pravi, da bo absolutna vrednost skalarnega produkta vedno manjša ali enaka od produkta njunih absolutnih vrednosti.
+
+\[
+|\vec a \cdot \vec b| \leq|\vec a||\vec b|
+\]
+
+Dokaz:
+\[
+|\vec a \cdot \vec b| = |\vec a || \vec b||\cos\varphi| \leq|\vec a||\vec b|
+\]
+
+\section*{Paralelogramska enačba}
+Za poljubna dva vektorja a, b velja
+
+\[
+|\vec a + \vec b|^2 + |\vec a - \vec b|^2 = 2(|\vec a|^2 +|\vec b|^2)
+\]
+
+Dokaz: 
+\begin{align*}
+|\vec a + \vec b|^2 = (\vec a + \vec b)\cdot (\vec a + \vec b)\\
+|\vec a - \vec b|^2 = (\vec a - \vec b) \cdot (\vec a - \vec b)
+\end{align*}
+
+
+\section*{Enačba ravnine, enačba premice}
+
+Premico natančno določata vektor in njegova izhodiščna točka. Tak vektor imenujemo smerni vektor premice.
+
+\[\vec{r}_T = \vec{r}_{T_0} + \lambda\vec{e}\]
+\[(x,y,z) = (x_0,y_0,z_0)+\lambda (a,b,c)\]
+
+Primer enačbe premice v vektorski obliki, kjer je $T$ poljubna točka na premici, $e$ smerni vektor premice in $\lambda$ poljubno realno število
+
+\[\frac{x-x_0}{a} = \frac{y-y_0}{b} = \frac{z-z_0}{c}
+\]
+zgoraj je zapis v kanonični obliki.
+
+
+Ravnino natanko določita izhodišče in vektor normale.
+
+\[(\vec{r}_T - \vec{r}_{T_0}) \cdot \vec{n} = 0 
+ \]
+\[
+(x - x_0, y - y_0, z - z_0) \cdot (a, b, c) = 0 \]
+
+Zapis v vektorski obliki
+
+\[
+ax + by + cz = d
+\]
+\[
+d = ax_0 + by_0 + cz_0
+\]
+zgoraj je zapis v kanonični obliki.
+
+Velja:\\
+$d=0$: ravnina gre skozi koordinatno izhodišče\\
+$c=0$: ravnina vzporedna z $z$ osjo\\
+$b=c=0$: ravnina vzporedna z $yz$ ravnino
+
+
+\pagebreak
+\section*{Razdalja med točkama, razdalja med točko in premico}
+Razdaljo med točkama se izračuna s pomočjo pitagorovega izreka, kjer za dolžine stranic vstavimo razlike koordinat točk.
+
+\[d(T_1, T_2) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}\]
+
+Razdaljo med točko in premico dobimo po formuli
+
+\[d(T, p) = \frac{\vec{e} \times (\vec{r}_{T_0} - \vec{r}_T)}{|\vec{e}|}\]
+
+\section*{Razdalja med točko in ravnino, razdalja med premicama, razdalja med premico in ravnino}
+Razdalja med točko in ravnino
+
+\[d(T, \Pi) = \frac{|ax_T + by_T + cz_T - d|}{\sqrt{a^2 + b^2 + c^2}}\]
+
+Razdalja med premicama 
+
+\[d(p_1, p_2) = \frac{|(\vec e_1, \vec e_2, \vec r_{T_2}-\vec r_{T_1})|}{|\vec e_1 \times \vec e_2|}\]
+
+Če sta premici vzporedni se lahko računa tudi razdalja med poljubno točko na eni premici in drugo premico.\\
+
+Razdalja med premico in ravnino je 0, če premica seka ravnino. Če ravnine ne seka jo dobimo kot razdaljo od poljubne točke na premici do ravnine. Premica ravnine ne seka, če je pravokotna na normalo in ne leži na ravnini.
+
+
+\pagebreak
+\section*{Računanje z matrikami}
+
+\subsection*{Seštevanje} 
+Pri seštevanju matrik se skupaj sešteje elemente na istih indeksih, torej velja
+$(A_{ij})+(Bij) =(A_{ij}+B_{ij}) = C_{ij}$\\\
+
+Operacija seštevanja je definirana le če sta obe matriki enake velikosti.\\\
+
+Nevtralni element za seštevanje je ničelna matrika oz. matrika samih ničel. (pomeni da se nič ne spremeni)\\\ 
+
+Lastnosti seštevanja:\\
+komutativnost : $A+B = B+A$\\
+asociativnost  : $(A+B)+C = A+(B+C)$ \\
+$A+0 = A $ (0 je ničelna matrika)\\
+$A + (-A) = 0 $\\\
+
+\[
+A + B = \begin{bmatrix} A11&  A12\\ A21&  A22\end{bmatrix} + \begin{bmatrix}B11 &B12 \\ B21&B22 \end{bmatrix} = \begin{bmatrix}A11+B11 &A12+B12 \\ A21+B21 &A22+B22 \end{bmatrix}\]
+
+\subsection*{Množenje s skalarjem}
+Matriko lahko množimo s skalarjem (številko) tako, da s skalarjem pomnožimo vsak element matrike posebej.\\
+Nevtralni element množenja je 1 (se nič ne spremeni).\\\
+
+Lastnosti množenja s skalarjem:\\
+distributivnost: $\alpha(A+B)=\alpha A+ \alpha B$, $A(\alpha+\beta)=A\alpha+A\beta$\\
+asociativnost: (A) = A()\\\
+
+
+\[\mu\cdot \begin{bmatrix} 2&  3&2 \\  1&  5&2 \\  6&  2&2 \end{bmatrix}=\begin{bmatrix}\mu\cdot 2 &\mu\cdot 3 &\mu\cdot 2 \\ \mu\cdot 1 &\mu\cdot 5 &\mu\cdot 2 \\ \mu\cdot 6 &\mu\cdot 2 &\mu\cdot 2\end{bmatrix}
+\begin{bmatrix}1 &2 \\ 3 &4 \end{bmatrix}^T =\begin{bmatrix}1 &3 \\ 2 &4 \end{bmatrix}\]
+
+
+\pagebreak
+
+\subsection*{Transpozicija}
+Neki matriki lahko priredimo novo matriko, ki se ji reče transponirana matrika.
+To je matrika, ki ima zamenjano vlogo stolpcev in vrstic. Označimo jo z $A^T$.
+
+\[ \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}^T = \begin{bmatrix} 1 & 3 \\ 2 & 4 \end{bmatrix}\]
+
+Če velja zveza $A = A^T$ potem je $A$ simetrična matrika, če pa velja $A = -A^T$, potem pravimo da je $A$ poševno simetrična matrika. 
+
+
+
+
+\subsection*{Množenje matrik}
+
+Lahko definiramo množenje vsakega člena z vsakim, temu pravimo Hadamardov produkt : $ A \odot B = a_{ij} \odot b_{ij} = (a_{ij} \cdot b_{ij})$.\\
+ali pa običajen produkt matrik.
+Pri običajnem množenju matrik množimo vrstice in stolpce, tako da ko množimo neko vrstico s stolpcem.\\\
+
+\[\begin{bmatrix}a11 &a12 \\ a21 &a22 \end{bmatrix}\cdot \begin{bmatrix}b_{11} &b_{12} \\ b_{21} &_{b22} \end{bmatrix}=\begin{bmatrix}a_{11}b_{11}+a_{12}b_{21} &a_{11}b_{12}+a_{12}b_{22} \\ a_{21}b_{11}+a_{22}b_{21} &a_{21}b_{12}+a_{22}b_{22} \end{bmatrix}
+A\cdot A^-1 = A^-1\cdot A = I\]
+
+Ker pri običajnem množenju matrik množiti vrstice leve matrike s stolpci desne, je operacija običajnega množenja definirana le če ima leva matrika toliko stolpcev (elementov v vrstici)  kot desna vrstic (elementov v stolpcu).\\\
+
+Lastnosti:\\
+asociativnost: $(AB)C=A(BC)$\\
+distributivnost: $C(A+B)=CA+CB$; $(A+B)C=AC+BC$\\  
+komutativnost NE velja! $AB \neq BA$ \\
+Če je $AB = 0$, ni nujno $A=0$ ali $B=0$\\
+$(AB)^T= B^T A^T$; $(AB)^{-1} = B^{-1} A^{-1}$\\
+$AI=IA = A$\\
+
+
+\pagebreak
+\section*{Rang matrike}
+
+Rang kvadratne matrike je dimenzija največje neničelne pod-determinante te matrike. Torej če obstaja taka podmatrika $A_k$, potem je $rangA = k$;\\\
+
+Če je matrika $A$ zgornje/spodnje-trikotna matrika, potem je rang enak številu neničelnih vrstic.\\
+Matrika ima rang enak $0$, če so vsi njeni elementi enaki $0$.\\
+Matrika je nesingularna ko je $rangA_n= n$ in singularna ko je $rangA_n<n$\\\
+
+
+Rang je definiran tudi za pravokotne matrike in je $rangA \leq min(m,n)$ najmanjša dimenzija\\\
+
+Lastnosti:\\
+Rang se pri transpoziciji ne spremeni.\\
+Rang se pri menjavi dveh vrstic prav tako ne spremeni.\\
+Množenje matrike s skalarjem, ki je različen od 0 ranga ne spremeni.
+
+
+\section*{Inverzna matrika (definicija, lastnosti, izračun)}
+Če obstaja taka matrika $A$, da velja $A \cdot A^{-1} = A^{-1} \cdot A = I$
+, potem pravimo da je matrika $A$ obrnljiva/nesingularna in da je $A^{-1}$ njena inverzna matrika. Matrika je obrnljiva če je nesingularna.\\
+Obrnljivost preverimo z njeno determinatno, če je ta različna od 0, potem je matrika nesingularna, torej obrnljiva.\\
+Inverzno matriko lahko izračunamo s Cramerjevim pravilom, gaussovo eliminacijo ali po formuli :
+
+\[
+A^{-1}=\frac{1}{det(A)}\cdot \widetilde{A^T}
+\]
+
+kjer je $\widetilde{A^T}$ transponirana matrika kofaktorjev.
+\pagebreak
+\section*{Posebne vrste matrik (simetrična …)}
+
+\subsection*{Simetrična}
+
+Če imamo matriko $A$ in ji priredimo matriko $A^T$ in velja zveza
+$A = A^T$, potem je $A$ simetrična matrika.
+
+
+\subsection*{Poševno-simetrična}
+
+Če matriki $A$ priredimo transponirano matriko in velja zveza $A = -A^T$, potem je matrika $A$ poševno-simetrična matrika.\\
+Vsako matriko, se da zapisati kot vsoto simetrične in poševno simetrične matrike
+
+
+\subsection*{Diagonalna}
+
+Neka kvadratna matrika je diagonalna, če velja $a_{ij} = 0 ; i\neq	j$
+
+\[
+\begin{bmatrix}a &0  &0 \\ 0 &b  &0 \\ 0 &0  &c \end{bmatrix}= D
+\]
+
+
+\subsection*{Enotska}
+
+Enotska matrika oziroma Identiteta je matrika, ki ima po diagonali same enice in za vse ostale elemente 0. Torej
+
+
+\[
+\begin{matrix}a_{ij} = 1 & ;\ i = j \\ a_{ij} = 0 &;\ i\neq j \end{matrix} 
+\]
+\[
+\begin{bmatrix}1 &0  &0 \\ 0 &1  &0 \\ 0 &0  &1 \end{bmatrix}=I[3]
+\]
+
+\pagebreak
+\subsection*{Zgornje/spodnje trikotna}
+
+Zgornje-trikotna matrika je matrika, ki ima pod diagonalo same ničle, torej velja $a_{ij} = 0; i>j$
+
+\[
+\begin{bmatrix}1 &2  &3 \\ 0 &4  &5 \\ 0 &0  &6 \end{bmatrix}
+\]
+
+Spodnje-trikotna matrika je matrika, ki ima pod neko diagonalo neničelne element, nad diagonalo pa same ničle $a_{ij} = 0 ; i < j$
+
+
+\[
+\begin{bmatrix}1 &0  &0 \\ 2 &3  &0 \\ 4 &5  &6 \end{bmatrix}
+\]
+
+\subsection*{Ničelna}
+To je matrika, ki ima samo ničle. \\
+Je nevtralna matrika za seštevanje.
+
+
+\subsection*{Hermitska/ poševno hermitska}
+
+Če je $A$ kompleksna matrika, potem ji lahko priredimo novo matriko imenovano adjungirana matrika, označimo jo z $A^*=\text{ Konjugirano}(A)^T$.   \\
+Če velja da je $A=A^*$, potem je to hermitska matrika. Če velja $A=-A^*$, potem je to poševno hermitska matrika.
+
+\[\begin{bmatrix} 5-2i & 1+i \\ 10+i & 1-7i \end{bmatrix}^* = \overline{\begin{bmatrix} 5-2i & 1+i \\ 10+i & 1-7i \end{bmatrix}}^T = \begin{bmatrix} 5+2i & 10-i \\ 1-i & 1+7i \end{bmatrix}\]
+
+Za diagonalne elemente hermitske matrike velja da so realna števila.\\
+Za diagonalne elemente poševno hermitske matrike pa velja da so njihovi realni deli enaki 0 
+
+
+\subsection*{Unitarna}
+
+Če velja zveza $AA^*=A^*A=I$, potem je $A$ unitarna matrika. Realni unitarni matriki pravimo ortogonalna matrika. \\
+Če je $A$ unitarna matrika, potem je $A^*$ njena inverzna matrika.
+
+
+\section*{Sistemi linearnih enačb - osnovni izrek}
+
+Homogeni sistem:\\
+Sistem linearnih enačb je homogen če je pri $Ax=B$, $B$ enak 0.\\
+Pri takem sistemu dobimo trivialne rešitve (kjer so vsi členi na levi enaki 0) in netrivialne rešitve. Trivialne rešitve vedno dobimo. Netrivialno rešitev dobimo če je $rangA < \text{št. neznank}$ oziroma če je $detA = 0 $ oziroma je matrika singularna.
+
+
+\section*{Gaussova metoda za reševanje sistema linearnih enačb}
+
+Transformacije: pri sistemu enačb lahko zamenjamo vrstice, enačbo pomnožimo z neničelnim skalarjem, od enačbe odštejemo večkratnik druge.\\
+Sistem enačb lahko zapišemo tudi v obliki $Ax=B$, kjer je $A=A_{mn}$ ; $x=x_{n_1}$; $B=B_{n_1}$\\
+Matriko lahko potem razširimo v razširjeno obliko  $R=(A|B)$\\
+Matriko potem z zgoraj napisanih transformacijah matriko preoblikujemo do zgornje-trikotne ali spodnje-trikotne matrike in potem rekurzivno rešimo sistem.
+Zgornje trikotna matrika je matrika, ki ima desno zgoraj elemente, levo spodaj pa same 0-čle. Spodnje trikotna pa ima elemente spodaj levo in zgoraj desno nad neko diagonalo same ničle (0).\\\ 
+
+Rešitve sistema so lahko:\\
+- ni rešitve, premice se ne sekajo nikjer (rang razširjene matrike ni enak rangu matrike $A$)\\
+- ena sama rešitev, premice se sekajo v eni točki ($rangR = $ št. neznank)\\
+- neskončno rešitev, premice ležijo ena na drugi (izberemo si toliko poljubnih neznank, kot je (število neznank - število neničelnih vrstic) $rangR < $ št. neznank)
+
+
+
+\section*{Vektorski prostor}
+
+
+Realni vektorski prostor je neprazna množica $V$ skupaj z dvema operacijama: seštevanje elementov iz $V$, ki jih imenujemo vektorji in množenje elementov z realnimi števili, ki jih imenujemo skalarji.\\\
+
+Za poljubna elementa $a,b \in V$ je njuna vsota $a+b \in V$ in velja:\\
+$a+b=b+a$ (komutativnost)\\
+$(a+b)+c=a+(b+c)$ (asociativnost)\\
+Obstaja nevtralni element za seštevanje $0 \in V $, za katerega je $a+0=a$\\
+Za vsak a obstaja inverzni element za seštevanje $-a$, za katerega je $a+(-a)=0$\\\
+
+Za poljubni element $a\in V$ in poljuben skalar $\lambda \in R$ je $\lambda a \in R$ in velja:\\
+$\lambda(a+b)=\lambda a+ \lambda b$ (distributivnost)\\
+$(\lambda+ \mu)a=\lambda a+ \mu a$ (distributivnost)\\
+$(\lambda\mu)a=\lambda(\mu a)$ (asociativnost)\\
+1 je nevtralni element za množenje s skalarjem $1\cdot a=a$.
+
+
+\section*{Baza vektorskega prostora}
+
+Če obstaja taka podmnožica $\mathbf{B} \subset V$, katere elementi so linearno neodvisni, vsak element iz $V$ se pa da zapisati kot linearna kombinacija elementov $V$, tedaj množico $ \mathbf{B}$ imenujemo baza vektorskega prostora $V$. Če je baza prostora V končna množica, potem moč baze (število elementov v bazi) imenujemo dimenzija vektorskega prostora $V$.
+
+
+
+\section*{Linearna neodvisnost vektorjev}
+
+Vektorji so linearno neodvisni, kadar niso linearno odvisni. Vektorji so linearno odvisni, če zanje obstaja netrivialna linearna kombinacija enaka ničelnemu vektorju.
+Linearno odvisnost lahko preverimo z determinanto, ta mora biti različna od 0, lahko pa pogledamo tudi rang, če je rang enak dimenziji vektorskega prostora, potem sta vektorja linearno neodvisna.
+
+\section*{Linearna preslikava}
+
+Preslikava $f:\nu_1 \rightarrow \nu_2$  je linearna, če je preslikava, ki je hkrati aditivna in homogena. Torej če velja:\\
+$f(a+b) = f(a) + f(b)$ (aditivna preslikava) \\
+$f(\lambda a) = \lambda f(a)$   (homogena preslikava)\\
+
+Ker ohranja obe operaciji (seštevanje in množenje s skalarjem), ohranja matematično strukturo vektorskega prostora.\\
+Matrike so linearne preslikave in vsako linearno preslikavo se tako da predstaviti z matriko.
+
+\pagebreak
+\section*{Lastne vrednosti, lastni vektorji matrike}
+
+Če imamo matriko $A$ in vektor $\vec x$, in velja zveza 
+
+\[
+A \cdot \vec X = \lambda\cdot\vec X
+\]
+
+kjer je $X$ neničeln vektor,
+potem je $\lambda$ lastna vrednost matrike, $X$ pa njen lastni vektor, ki pripada lastni vrednosti $\lambda$. Vektor $X$ lahko pomnožimo z ničelnim skalarjem in bo ta novi vektor tudi lastni vektor matrike, ki pripada lastni vrednosti $\lambda$. Lastni vektor je torej element, ki ga matrika preslika samega vase in pomnožen s skalarjem.\\\
+
+
+Gornjo enačbo se da preoblikovati v
+\[
+A\cdot \vec X -\lambda\cdot\vec X= 0
+\]
+
+oziroma 
+
+\[
+(A-\lambda\cdot I)\ \vec X = 0
+\]
+
+ker pa je $X$ neničelen vektor, potem iščemo rešitev, da bo 
+$A-\lambda I$, singularna matrika, oziroma da bo $det(A-\lambda I) = 0$. Matrika ima lahko največ $n$ lastnih vrednosti, kjer je $n$ dimenzija matrike. Po pridobljeni lastni vrednosti poiščemo še lastni vektor po prvi enačbi.
+
+
+
+\section*{Lastne vrednosti hermitskih, poševno hermitskih, unitarnih matrik}
+
+Hermitske matrike:  \\
+Za lastne vrednosti hermitskih matrik velja, da je imaginarni del lastnih vrednosti enak 0 oziroma so lastne vrednosti realna števila.\\\
+
+Poševno hermitske matrike:  \\
+Za poševno hermitske matrike velja, da je realen del njenih lastnih vrednosti enak 0.\\\
+
+Unitarna matrika:  \\
+Pri unitarnih matrikah so vse njene lastne vrednosti po absolutni vrednosti enake 1.
+
+
+
+
+
+
+\chapter*{Funkcijske vrste}
+
+
+\section*{Funkcijska vrsta (definicija, definicijsko območje, konvergenca)}
+
+Funkcijska vrsta je vsota neskončnega zaporedja realnih funkcij. Funkcijska vrsta je tudi sama funkcija. Za nekatere vrednosti odvisne spremenljivke ima vrsta končno vsoto (konvergira). Množici vseh vrednosti za katere vrsta konvergira pravimo definicijsko območje funkcijske vrste.
+
+
+\section*{Potenčna vrsta (definicija, konvergenca)}
+
+Potenčni vrsti oblike $$ \sum_{n=0}^{\infty} a_n(x-x_0)^n$$ pravimo potenčna vrsta. $x_0$ predstavlja točko okoli katere smo vrsto razvili, $a_n$ pa so členi poljubnega realnega zaporedja.
+
+\[
+R = \lim_{n\rightarrow\infty} \left| \frac{a_n}{a_n+1} \right| 
+\]
+
+
+Konvergenčni radij potenčne vrste se izračuna preko zgornje limite. Vrsta konvergira kadar je $|x-a|<R$. Zgolj konvergenčni radij ni dovolj za ugotoviti konvergenco robnih točk $x=a \pm R$. Za te vrednosti $x$ konvergenco preverimo posebej.
+
+
+
+\section*{Odvajanje in integriranje potenčnih vrst}
+
+Pri računanju vsote potenčne vrste si lahko pomagamo z odvajanjem in integriranjem. Odvod/integral potenčne vrste je enak odvodu/integralu funkcije, ki je razvita v to vrsto. S pomočjo odvoda ali integrala se lahko potenčna vrsta poenostavi v znano obliko, katere vsoto znamo izračunati. Na koncu je potrebno izvesti obratne operacije, da dobimo vsoto prvotne funkcije.
+\bigbreak
+Primer: $1+2x+3x^2+4x^3+5x^4+ ...$ \\
+Vrsto integriramo. Dobimo $x+x^2+x^3+x^4+x^5 +... =\frac{x}{1-x}$ \\
+Dobljeno funkcijo odvajamo $\frac{1(1-x)-x(-1)} {(1-x)^2}=\frac{1}{(1-x)^2}$
+
+
+\section*{Taylorjeva vrsta funkcije f}
+Posebni obliki potenčne vrste, kjer je $a_n = \frac{f^{(n)}}{n!}$ pravimo taylorjeva vrsta. Taylorjeva vrsta se ujema originalni funkciji v bližini točke $a$, okoli katere razvijamo. Splošna formula za taylorjevo vrsto funkcije $f$, razvite okoli točke $a$ je
+
+\[
+\sum_{n=0}^{\infty} \frac{f^{(n)} (a)(x-a)^n}{n!}
+\]
+
+\section*{Taylorjeva vrsta funkcij: ex, sin(x), cos(x), ln(1+x)}
+
+\begin{align*}
+    & e^x=\sum_{n=0}^\infty \frac{x^{n}}{n!}\\
+    & \sin(x)=\sum_{n=0}^\infty \frac{(-1)^nx^{2n+1}}{(2n+1)!}\\
+    & \cos(x)=\sum_{n=0}^\infty \frac{(-1)^nx^{2n}}{(2n)!}\\
+    & \ln(1+x)=\sum_{n=1}^\infty (-1)^{n-1} \frac{x^{n}}{n} \text{ ; konvergira (-1,1]}
+\end{align*}
+
+\section*{Binomska vrsta, binomski koeficienti}
+
+Vrsto funkcije $(1+x)^\alpha$ imenujemo binomska vrsta.
+
+\[(x + 1)^\alpha = \sum_{n = 0}^{\infty} \binom{\alpha}{n}x^n \]
+
+člen $\binom{\alpha}{n}$ se imenuje binomski koeficient.
+
+\begin{align*}
+&\binom{\alpha}{n} = \frac{\alpha(\alpha - 1) ... (\alpha -n -1)}{n!}\\
+&\binom{\alpha}{0} = 1 \\
+&\binom{\alpha}{1} = \alpha
+\end{align*}
+
+Z binomsko vrsto se lahko računa poljubne potence/korene, člen ki ga potenciramo ali korenimo je potrebno spraviti v obliko $1+x$, kjer je $x$ manjši od 1.
+\bigbreak
+Primer: $14^{\frac{1}{3}}= (8\cdot \frac{14}{8})^{\frac{1}{3}}= 2(1+\frac{6}{8})^{\frac{1}{3}}$
+
+
+
+\section*{Fouriejeva vrsta (definicija, konvergenca)}
+
+Fourierova vrsta funkcijo razvije v periodično funkcijo na intervalu ($-\pi, \pi$). Je sestavljena iz neskončne vrste sinusov in kosinusov.
+
+\[F(x)=a_0 + \sum_{n=1}^\infty ( a_n\cos(nx) + b_n\sin(nx))\]
+
+Člen $a_0$ predstavlja povprečno vrednost originalne funkcije na intervalu razvoja in se izračuna po formuli
+
+\[a_0=\frac{1}{2\pi} \int_{-\pi}^{\pi} f(x)dx \]
+
+Koeficiente $a_n$ in $b_n$ dobimo po sledečih formulah
+
+\[a_n=\frac{1}{\pi} \int_{-\pi}^{\pi} \cos(nx) f(x)dx \]
+
+\[b_n=\frac{1}{\pi} \int_{-\pi}^{\pi} \sin(nx) f(x)dx \]
+
+
+
+
+
+\section*{Fourierova vrsta s poljubno periodo}
+
+Pri razvoju na intervalu ($a, a+T$) so formule sledeče:
+
+
+\[F(x)=a_0 + \sum_{n=1}^\infty\left ( a_n\sin\left ( \frac{2\pi n x}{T} \right )+b_n\cos\left ( \frac{2\pi n x}{T} \right ) \right )\]
+
+\[a_0=\frac{1}{T}\int_a^{a+T}\sin f(x)dx\]
+\[a_n=\frac{2}{T}\int_a^{a+T}\cos(\frac{2\pi n x}{T}) f(x)dx\]
+\[b_n=\frac{2}{T}\int_a^{a+T}\sin(\frac{2\pi n x}{T}) f(x)dx\]
+
+\section*{Sinusna Fouriejeva vrsta, kosinusna Fouriejeva vrsta}
+Funkcijo na intervalu ($0, \frac{T}{2}$ lahko sodo ali liho prezrcalimo in razvijemo v sinusno ali kosinusno vrsto. Pri kosinusni funkcijo sodo prezrcalimo, vsi $b_n$ so enaki 0. Pri sinusni je funkcija prezrcaljena liho, torej so $a_0$ in $a_n$ enaki 0.
+
+
+\section*{Funkcija dveh spremenljivk (definicija, zveznost, limita, graf)}
+
+Funkcija dceh spremenljivk je preslikava ki slika iz območja $D \subseteq \mathbb{R}^2$ v realna števila.
+
+V točki ($x_0, y_0$) je zvezna, če za vsak $\varepsilon>0$ obstaja tak $\delta >0$ da je 
+\\ $|f(x,y)-f(x_0,y_0)| < \varepsilon$ za vsako točko $(x,y) \in D$, za katero velja \\ $|(x,y)-(x_0,y_0)| < \delta$ ali $\sqrt{(x-x_0)^2+8y-y_0)^2} < \delta$
+
+Število $A$ je limita funkcije v točki ($x_0, y_0$), če za vsak $\varepsilon>0$ obstaja tak $\delta>0$, da je $ |f(x,y)-A|< \varepsilon$ za vsako točko $(x,y) \in D$, za katero velja \\ $|(x,y)-(x_0,y_0)| < \delta$
+
+To zapišemo kot 
+
+\[\lim_{(x,y)\rightarrow(x_0,y_0)}f(x,y) = A\]
+
+
+
+\section*{Odvod funkcije več spremenljivk}
+
+Pri parcialnem odvajanju, neko funkcijo npr. $g(x,y,z)$ odvajamo po vsaki neznani spremenljivki ločeno. Ko odvajamo po neki spremenljivki, se ostale neodvisne spremenljivke obnašajo kot konstante, npr. pri odvodu $g_x(x,y,z)$ odvajamo le po neodvisni spremenljivki $x$, medtem ko sta $y$ in $z$ pri odvajanju konstanti.
+
+
+\section*{Posredno odvajanje}
+
+Pri posrednem odvajanju eno spremenljivko zapišemo kot funkcijo ostalih dveh, npr. $z=z(u,v)$ kjer sta $u$ in $v$ funkciji $x$ in $y$. Po pravilu za kompozitum dobimo
+
+
+\begin{align*}
+&z=z(u,v),\ u=u(x,y),\ v=v(x,y)\\
+&z_x=z_uu_x+z_vv_x \\
+& z_y=z_uu_y+z_vv_y
+\end{align*}
+
+
+\section*{Višji parcialni odvodi}
+Odvaja se na enak način kot običajen parcialni odvod, ni pa pomemben vrstni red odvajanja (npr. $f_{xyxz} = f_{zxyx} = f_{xxyz}$ ipd.)
+
+
+\section*{Taylorjeva vrsta funkcije dveh spremenljivk}
+
+Funkcijo odvajamo parcialno po $x$ in $y$, za razvoj okoli točke ($a, b$) je formula za razvoj do 1. odvoda 
+
+\[
+f(x,y) = f(a,b) +f_x(a,b)(x-a)+f_y(a,b)(y-b)
+\]
+
+Pri vrstah z višjimi odvodi je potrebno upoštevati vse možne kombinacije odvodov. Za n-to stopnjo parcialnega odvoda po $x$ se doda člen $(x-a)^n$ v števec in v imenovalcu $n!$. Podobno za $y$. Za člen z odvodom $f_{xxxxxyyy}$ je celoten člen vrste torej $f_{xxxxxyyy} \frac{(x-a)^5(y-b)^3}{5! \cdot 3!}$ Razvoj do 2. stopnje:
+
+
+\begin{align*} 
+&f(x,y) = f(a,b) +f_x(a,b)(x-a)+f_y(a,b)(y-b)+ \\ 
+&+\frac{f_{xx}(x-a)^2}{2}+f_{xy}(x-a)(y-b)+\frac{f_{yy}(y-b)^2}{2} 
+\end{align*}
+
+\[f(x,y) = \sum\limits_{i=0}^n\sum\limits_{j=0}^{n-i}\frac{\frac{d^{i+j}f(a,b)}{\delta x^i\delta y^j}}{i!\cdot j!}(x-x_0)^i\cdot(y-y_0)^j\]
+
+
+\section*{Izrek o implicitni funkciji}
+Implicitna funkcija je funkcija s predpisom $F(x, y) = 0$.
+Če je $F(x,y)$ v okolici točke ($a,b$) zvezno odvedljiva in $F_y \neq 0$, potem obstaja enolično določena funkcija $y = f(x)$, tako da je $f(a) = b$ za vsak $x$. Oziroma $F(x,f(x)) = 0$.
+
+
+\section*{Ekstrem funkcije dveh spremenljivk}
+Funkcija ima v točki ($a, b$) ekstrem, če obstaja tako število $\delta>0$, da ima izraz $f(x+h,y+k)-f(a,b)$ isti predznak za vsak $h$ in $k$, za katere je $h^2+k^2 < \delta^2$. Če je vrednost izraza v ekstremu pozitivna je v točki ($a, b$) minimum, če je negativna je v točki maksimum.
+
+
+\section*{Hessejeva matrika}
+Hessejeva matrika nam pomaga določiti, ali ima funkcija v stacionarni točki lokalni ekstrem. Če je determinanta Hessejeve matrike pozitivna, je v točki lokalni ekstrem. Če je determinanta negativna, je v točki sedlo.
+
+\[H = 
+\begin{bmatrix}
+ f_{xx} & f_{yx}\\
+ f_{xy} & f_{yy}
+\end{bmatrix} 
+\]
+
+\section*{Vezani ekstrem funkcije dveh spremenljivk}
+
+Iščemo ekstrem funkcije $f$ pri pogoju, da velja $g(x,y)=0$. $g$ je implicitno podana krivulja. Vezani ekstrem najdemo s pomočjo Lagrangeove funkcije. 
+
+\[
+L(x,y,\lambda) = f(x,y) + \lambda g(x,y)
+\]
+
+Vezani ekstrem funkcije $f$ pri pogoju $g$ se nahaja v ekstremih Lagrangeove funkcije.\\
+Lambda - Lagrangeov multiplikator\\
+L - Lagrangeova funkcija\\
+Kandidati za vezani ekstrem so stacionarne točke F.\\ Da dobimo globalni ekstrem znotraj območja preverimo vrednosti v vseh točkah. 
+
+
+
+\chapter*{Diferencialne enačbe}
+
+
+\section*{Diferencialna enačba (definicija, začetni problem, robni problem)}
+
+Diferencialne enačbe so enačbe, ki opisujejo razne pojave v naravoslovnih znanostih (fiziki), naravi, medicini, tehniki…\\\
+
+Ločimo dve vrsti:\\
+
+-Navadne DE: nastopa funkcija $y(x)$, neodvisna spremenljivka x, odvod funkcije.\\
+-Parcialne DE: nastopa neznana funkcija več spremenljivk, parcialni odvodi, več neodvisnih spremenljivk. \\\
+
+Red DE:\\
+-Diferencialna enačbe je n-tega reda, če v njej nastopa n-ti odvod neznane funkcije.\\
+-DE ima v splošni rešitvi toliko neznanih konstant kot je red DE.\\\
+
+Rešiti DE pomeni poiskati funkcijo y, da velja enakost za vsak x na nekem območju.\\\
+
+Če v DE nastopa nedoločena konstanta, potem je to splošna rešitev DE.\\
+Če je rešitev DE enolično določena, je to partikularna rešitev.\\\
+
+Konstanto lahko pridobimo če podamo ali:\\
+-začetne pogoje : $y(x_0) = y_0 \text{ ; } y'(x_0)=y_1..y_2..y_3..$\\
+-robne pogoje : $y(x_n)= y_n \text{ ; } y(x_k) = y_k$\\\
+
+Iz teh pogojev potem dobimo enolično določeno rešitev.\\
+Lahko se zgodi da DE nima ne splošne ali nobene partikularne rešitve.
+
+
+\section*{Diferencialna enačba z ločljivimi spremenljivkami}
+
+DE z ločljivimi spremenljivkami je enačba oblike:
+
+\[y'=g(x)\cdot f(y)\]
+
+Ker je DE kjer je $f(y) =0$ konstantna funkcija, privzamemo da je $f(y) \neq 0$.
+Rešimo jo z ločitvijo spremenljivk in integracijo leve in desne strani. Konstanto določimo prek začetnih ali robnih pogojev.
+
+\[
+\frac{dy}{dx}=g(x)f(y)\rightarrow \int \frac{dy}{f(y)}= \int g(x)dx
+\]
+
+
+\section*{Linearna diferencialna enačba 1. reda (homogena, nehomogena)}
+To je DE oblike $y'(x)+f(x)\cdot y(x) = g(x)$\\
+ 
+Če je $g(x) = 0$, potem rečemo da je to homogena linearna DE.\\\
+
+LDE prvega reda rešujemo z variacijo konstante:\\
+-Poiščemo homogeno rešitev\\
+-Z variacijo konstante poiščemo partikularno rešitev\\
+-Rešitev te DE je potem enaka $y(x) = y(x)_{homogena}+y(x)_{partikularna}$ \\\
+
+Variacija konstante:\\
+$y_{h}(x)  = C\cdot e^{-\int f(x)}\rightarrow y_p(x)=C(x)\cdot y_h(x)$\\
+-To rešitev potem še enkrat odvajamo in vstavimo v originalno enačbo, kjer izračunamo C(x), da dobimo partikularno rešitev.\\\
+
+Na koncu na podlagi robnih/začetnih pogojev izračunamo še neznano konstanto.
+
+ 
+
+
+\section*{Bernoullijeva diferencialna enačba}
+
+Bernoullijeva DE je DE oblike
+
+\[
+y'+f(x)\cdot y= g(x)\cdot y^\alpha\ ;\  \alpha \neq 0
+\]
+
+Rešimo jo tako da enačbo pomnožimo z $y^{-\alpha}$, da dobimo
+
+\[
+y'\cdot y^{-\alpha} + f(x) \cdot y^{1-\alpha}= g(x) 
+\] 
+
+, kjer uvedemo novo spremenljivko $u(x) =y^{1-\alpha} $ in $u'(x) = (1-\alpha)\cdot y^{-\alpha} \cdot y'(x)$ in vstavimo v enačbo, da dobimo linearno DE prvega reda.
+
+
+\section*{Eksaktna diferencialna enačba}
+Eksaktna DE je enačba oblike$P(x,y)dx+Q(x,y)dy = 0$, kjer velja da je $P_y=Q_x$.\\\
+
+Rešitev EDE dobimo v implicitni obliki
+$F(x,y) = C$\\
+Če zadošča pogoju $P_y=Q_x$, potem je $dF(x,y)$ enako 0, saj je $\int F_xdx+F_ydy=\int Pdx + Qdy$. Ta pogoj pove tudi da sta mešana odvoda enaka.\\\
+
+
+Rešimo jo tako da integriramo $\int P(x,y) dx$  in $\int Q(x,y) dy$ ter potem sestavimo skupno enačbo tako da v skupno enačbo dodamo vse člene, kjer členov ne podvajamo.
+
+
+
+\section*{Vpeljava parametra v diferencialno enačbo:}
+
+$F(x,y')=0$\\
+$x=\varphi(y')$\\
+V DE lahko ne nastopa:\\\
+
+$y : F(x,y’) = 0$, tu lahko izrazimo $y’ = f(x)$ in rešujemo DE z ločljivimi spremenljivkami.\\\
+
+$x : F(y,y’) = 0$, tu lahko izrazimo $x = f(y’)$  oziroma $x = \frac{dy}{dx}$ in vpeljemo parameter $p = y’$
+sledi $x = f(p) \rightarrow dx = f(p) dp \rightarrow \frac{dy}{p} = f(p) dp \rightarrow y = f(p) p dp$
+	Dobili smo parametrični zapis rešitve DE.
+
+
+\section*{Ortogonalne trajektorije}
+
+Ortogonalne trajektorije so vse krivulje, ki neki družino krivulj sekajo pod pravim kotom.\\ Iz linearnih funkcij se spomnimo, da je smerni koeficient pravokotnice na premico s smernim koeficientom k enak $-\frac{1}{k}$. Podobno za ortogonalne trajektorije velja $y'_{ort}= -\frac{1}{f(x,y)}$.
+
+
+\section*{Eksistenca in enoličnost rešitve diferencialne enačbe}
+
+$y'=f(x,y), y(x0)=y0$
+
+Pri začetnem problemu ima DE lahko eno rešitev, neskončno rešitev ali nobene rešitve.\\\
+
+Če je naša rešitev na primer: $y = Cx^2$, potem\\
+če je $y(0) = 0$,  imamo neskončno rešitev,\\
+če je $y(1) = 1 $,  imamo eno rešitev,\\
+če je $y(0) = 1$,  ni rešitve\\\
+
+Če imamo neko funkcijo omejeno s pravokotnikom in velja, da je $|x-x_0| \leq M$ in je $fy(x,y) \leq N$ za vsako točko v pravokotniku, potem obstaja ena rešitev pri začetnem pogoju $y(x_0) = y_0$.
+
+
+\section*{Splošna rešitev linearne diferencialne enačbe drugega reda}
+
+Splošna rešitev homogene linearne diferencialne enačbe drugega reda je oblike
+\[y(x) = C_1y_1+C_2y_2\] kjer sta $y_1$ in $y_2$ linearno neodvisni funkciji. Če je enačba nehomogena potem zraven prištejemo še partikularni del. Pri splošni rešitvi smo dobili vse rešitve diferencialne enačbe.
+
+
+\section*{Linearna diferencialna enačba drugega reda homogena s konstantnimi koeficienti}
+
+Je enačba oblike $y'' + ay' +by = 0$, kjer so $a$ in $b$ konstantni koeficienti. Rešitev se išče z nastavkom $e^{\lambda x}$, kar nam pridela karakteristični polinom
+
+\[ \lambda ^2 + a\lambda + b = 0\]
+
+Ko rešimo kvadratno enačbo lahko dobimo dve različni realni $\lambda$, dve enaki realni $\lambda$ ali dve kompleksni konjugirani $\lambda$, od česar je odvisna splošna rešitev diferencialne enačbe.
+
+Če imamo dve različni realni $\lambda$ je splošna rešitev
+
+\[y=C_1e^{\lambda_1x}+C_2e^{\lambda_2x}\]
+
+Če sta $\lambda$ enaki nam zgornji nastavek ne bi dal dveh linearno neodvisnih rešitev, zato v enega izmed členov dodamo $x$. Nova rešitev je torej
+
+\[y=C_1e^{\lambda x}+C_2xe^{\lambda x}\]
+
+
+Če sta $\lambda$ kompleksni konjugirani oblike $\lambda = p\pm iq$ je rešitev DE
+
+\[y=e^{px}(C_1 \cos(qx)+C_2 \sin(qx)) \]
+
+
+\section*{Determinanta Wronskega (linearna odvisnost funkcij)}
+
+
+Determinanta Wronskega nam pove, ali sta 2 funkciji linearno odvisni. Če je njena vrednost enaka 0 za vsak $x$ sta funkciji linearno odvisni, sicer sta linearno neodvisni. Funkciji sta linearno odvisni, če je $C_1f(t)+C_2g(t)=0$ za vsak $t$, $C_1$ in $C_2$ sta pa različni od 0.
+
+\[
+W(y_1,y_2)(x)=
+\begin{vmatrix}
+y_1(x) & y_2(x)\\ 
+y_1'(x) & y_2'(x)
+\end{vmatrix}
+\]
+
+
+\section*{Linearna diferencialna enačba s konstantnimi koeficienti, 2. reda, nehomogena}
+
+\[y''(x) +ay'(x) +by(x9 = r(x)\]
+
+Pri reševanju nehomogene LDE 2. reda s konstantnimi koeficienti najprej rešimo homogeni del, potem pa z nastavki dobimo še partikularno rešitev. Nastavek je odvisen od oblike funkcije $r(x)$.
+
+\[r(x) = Ae^{ax} \Rightarrow y_p = Ce^{ax}x^k\]
+
+k je enak številu lambd karakterističnega polinoma, ki so enaki $a$
+
+\[r(x) = P_n(x) \Rightarrow y_p = P_n(x)x^k\]
+
+$P_n$ je polinom n-te stopnje. Iščemo njegove koeficiente. $k$ je večkratnost ničle 0 v karakterističnem polinomu.
+
+
+
+\begin{align*} 
+&r(x)=A\sin(bx) \text{ ali } r(x)=A\cos(bx)\ \ \Rightarrow \\ \ &y_p=x^k(C_1\cos(bx)+C_2\sin(bx))
+\end{align*} 
+
+$k$ je večkratnost ničle $ib$ v karakterističnem polinomu.\\\ 
+
+Če je $r(x)$ sestavljen iz vsote zgoraj omenjenih funkcij je nastavek sestavljen iz vsote nastavkov posameznih funkcij. Enako za produkt. Primer:
+
+\[r(x) = P_n(x)e^{ax} \Rightarrow y_p = P_n(x)e^{ax}x^k\]
+
+
+\section*{Nehomogena linearna diferencialna enačba 2. reda}
+
+\section*{Eulerjeva diferencialna enačba 2. reda}
+
+Je enačba oblike
+
+\[
+x^2y'' + xay' + by = r(x)
+\]
+
+Rešujemo jo na enak način kot LDE 2. reda s konst. koeficienti, samo nastavki so nekoliko drugačni. Iščemo z nastavkom $x$. \\\
+
+Za homogeni del torej rešujemo enačbo
+
+\[\lambda(\lambda -1) +a\lambda + b = 0 \]
+
+Homogeni del:\\
+Če imamo dve različni realni $\lambda$ je splošna rešitev
+
+\[y_h = C_1x^{\lambda_1} + C_2x^{\lambda_2}\]
+
+Če sta $\lambda$ enaki
+
+\[y_h = C_1x^{\lambda} + C_2x^{\lambda}\ln(x)\]
+
+Če sta $\lambda$ kompleksni konjugirani oblike $\lambda = p \pm q$ je rešitev DE
+
+
+\[y_h=x^p(C_1\cos(q\ln(x))+C_2\sin(q\ln(x)))\]
+
+
+\section*{Reševanje nehomogene linearne diferencialne enačbe s konstantnimi koeficienti višjega reda s pomočjo nastavka}
+
+\section*{Sistemi diferencialnih enačb}
+
+
+
+\end{document}
+
